@@ -1,7 +1,8 @@
 ---
 layout: post
-title: Vue Quicktip: Fetch on Created, Then Watch
+title: Vue Quicktip - Fetch on Created, Then Watch
 ---
+
 A common pattern you see in Vue is calling a function on created, then watch a property for changes and recall that function. Whilst this is not a bad pattern, I will show you a quick tip how you can improve this code.
 ```js
 created () {
