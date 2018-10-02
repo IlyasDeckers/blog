@@ -34,17 +34,20 @@ To trigger the defined event you simply use the following on any of your Vue com
 In the following example, I trigger the visibility of a button located next to my breadcrumbs. Depending on what page is shown I want to manipulate the button text and function it triggers.
 
 ```js
-
 Breadcrumbs.vue
 
 <template>
   <div>
-    <button v-if="button.visible" @click="$bus.$emit(button.func, true)" class="btn btn-info d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> {{ button.text }}</button>
+    <button v-if="button.visible" 
+            @click="$bus.$emit(button.func, true)" 
+            class="btn btn-info d-none d-lg-block m-l-15">
+       <i class="fa fa-plus-circle"></i> {{ button.text }}
+    </button>
   </div>
 </template>
 
 export default {
-  name: 'Breadcrumbs\_',
+  name: 'Breadcrumbs',
 
   data () {
     return {
