@@ -29,8 +29,8 @@ IP:10.100.0.202
 To install Percona XtraDB you will have to add the appropriate repositories to your servers. Run the following commands on the three nodes.
 
 ```bash
-wget https://repo.percona.com/apt/percona-release\_0.1-4.$(lsb\_release -sc)\_all.deb
-sudo dpkg -i percona-release\_0.1-4.$(lsb\_release -sc)\_all.deb
+wget https://repo.percona.com/apt/percona-release_0.1-4.$(lsb_release -sc)_all.deb
+sudo dpkg -i percona-release_0.1-4.$(lsb_release -sc)_all.deb
 sudo apt-get update
 sudo apt-get install percona-xtradb-cluster-57
 ```
@@ -46,7 +46,7 @@ selinuxenabled && echo enabled || echo disabled
 If SElinux is enabled you can completely remove it from your system by uninstalling it
 
 ```bash
-sudo apt-get remove selinux\* --purge -y
+sudo apt-get remove selinux* --purge -y
 ```
 
 Or you can disable it by editing the config file for SElinux.
@@ -64,7 +64,7 @@ apparmor_status
 If a mysql profile is available you can disable it like this.
 
 ```bash
-sudo ln \-s /etc/apparmor.d/usr.sbin.mysqld /etc/apparmor.d/disable/
+sudo ln -s /etc/apparmor.d/usr.sbin.mysqld /etc/apparmor.d/disable/
 sudo apparmor_parser -R /etc/apparmor.d/usr.sbin.mysqld
 ```
 
@@ -74,10 +74,17 @@ If SElinux is enabled you can completely remove it from your system by uninstall
 
 ## Configure your firewall
 
-Percona XtraDB uses some ports asside from the standard 3306. You need to open these ports on your firewall for the cluster to function well. **MySQL:** 3306 **Cluster Communication:** 4567 **SST:** 4568 The main cluster communication happens over port 4567. You can change this by specifying this option.
+Percona XtraDB uses some ports asside from the standard 3306. You need to open these ports on your firewall for the cluster to function well. 
 
+**MySQL:** 3306  
+**Cluster Communication:** 4567  
+**SST:** 4568 
+
+The main cluster communication happens over port 4567. You can change this by specifying this option.
+
+```
 wsrep_provider_options="gmcast.listen_addr=tcp://0.0.0.0:4010;" 
-
+```
 ## Configure the bootstrap node
 
 Go to your first node and open /etc/mysql/my.cnf and copy the following configuration at the end of the file and change the IP's on line 2 and 6 to your configuration.
